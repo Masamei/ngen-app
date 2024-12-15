@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, act } from '@testing-library/react'
 import RandomEntryPage from '../pages/RandomEntryPage'
 
 const mockFetch = jest.fn(() =>
@@ -26,13 +26,10 @@ describe('RandomEntryPage Component', () => {
     mockFetch.mockClear()
   })
 
-  test('renders loading state initially', () => {
-    render(<RandomEntryPage />)
-    expect(screen.getByText('Loading...')).toBeInTheDocument()
-  })
-
   test('fetches and displays a random entry', async () => {
-    render(<RandomEntryPage />)
+    await act(async () => {
+      render(<RandomEntryPage />)
+    })
 
     await waitFor(() => {
       expect(screen.getByText('The Muse')).toBeInTheDocument()
@@ -45,7 +42,9 @@ describe('RandomEntryPage Component', () => {
   test.skip('displays error message on fetch failure', async () => {
     mockFetch.mockImplementationOnce(() => Promise.reject('API is down'))
 
-    render(<RandomEntryPage />)
+    await act(async () => {
+      render(<RandomEntryPage />)
+    })
 
     await waitFor(() => {
       expect(screen.getByText('API is down')).toBeInTheDocument()

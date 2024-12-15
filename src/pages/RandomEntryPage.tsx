@@ -9,11 +9,12 @@ function RandomEntryPage()
 {
   const [entry, setEntry] = useState<Entry | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null)
+  // const [error, setError] = useState<string | null>(null)
 
   async function fetchAndSetData() {
     setLoading(true)
-    const result = await fetchData<{entries: Entry[], error: string}>('https://api.publicapis.org/random')
+    await fetchData<{entries: Entry[], error: string}>('https://api.publicapis.org/random')
+    // const result = await fetchData<{entries: Entry[], error: string}>('https://api.publicapis.org/random')
     // setEntry(result.response?.entries[0] ?? null)
     // setError(result.error)
     setLoading(false)
