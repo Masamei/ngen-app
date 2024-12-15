@@ -13,11 +13,11 @@ const mockEntry = {
 
 describe('EntryCard Component', () => {
   test('renders EntryCard with correct data', () => {
-    const { getByText, getByRole } = render(<EntryCard entry={mockEntry} />)
+    const { getByText } = render(<EntryCard entry={mockEntry} />)
     
-    expect(getByText(/The Muse/i)).toBeInTheDocument()
-    expect(getByText(/Job board and company profiles/i)).toBeInTheDocument()
-    expect(getByRole('link', { name: 'Visit API' })).toHaveAttribute('href', mockEntry.Link)
+    expect(getByText('The Muse')).toBeInTheDocument()
+    expect(getByText('Job board and company profiles')).toBeInTheDocument()
+    expect(getByText('Cors: unknown')).toBeInTheDocument()
   })
 
   test('matches snapshot', () => {

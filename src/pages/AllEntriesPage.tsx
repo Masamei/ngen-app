@@ -4,8 +4,7 @@ import '../output.css'
 import { Entry } from '../interfaces'
 import Charts from '../components/Charts'
 import DataGrid from '../components/DataGrid'
-import useFetch from '../services/fetchService'
-import fetchService from '../services/fetchService'
+import fetchData from '../services/fetchService'
 
 export default function AllEntriesPage()
 {
@@ -15,7 +14,7 @@ export default function AllEntriesPage()
 
   async function fetchAndSetData() {
     setLoading(true)
-    const result = await fetchService<{entries: Entry[], error: string}>('https://api.publicapis.org/entries')
+    const result = await fetchData<{entries: Entry[], error: string}>('https://api.publicapis.org/entries')
     // setEntry(result.response?.entries[0] ?? null)
     // setError(result.error)
     setLoading(false)

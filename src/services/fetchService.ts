@@ -1,6 +1,6 @@
 import { FetchResult } from '../interfaces'
 
-export default async function fetchService<T>(url: string, maxRetries: number = 1): Promise<FetchResult<T>> {
+export default async function fetchData<T>(url: string, maxRetries: number = 0): Promise<FetchResult<T>> {
   let fetchedData: T | null = null
   let error: string | null = null   
   let numberOfCalls: number = 0
@@ -13,7 +13,8 @@ export default async function fetchService<T>(url: string, maxRetries: number = 
         
       const data = await response.json()
       
-      if (data.status === 200) {  
+      if (response.status === 200) {  
+        
         fetchedData = data
         error =  null
       }

@@ -6,8 +6,9 @@ export default function EntryCard({ entry }: { entry: Entry })
     window.open(entry.Link, '_blank', 'noopener noreferrer')
   } 
 
-  return (<div className='flex flex-wrap justify-evenly'>
-    <div onClick={handleClick} 
+  return (
+    <div className='flex flex-wrap justify-evenly'>
+      <div onClick={handleClick} 
           className='cursor-pointer text-silver bg-customBackground hover:bg-silver hover:text-green 
           rounded-lg p-4 m-2 min-w-52 max-w-52 w-52 transition duration-300 ease-in-out'>
         <h2 className='text-lg font-bold mt-2 elipsis-pretty'>{entry.API}</h2>

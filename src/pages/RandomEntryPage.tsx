@@ -2,8 +2,8 @@ import { useEffect, useState, memo } from 'react'
 import EntryCard from '../components/EntryCard'
 import '../output.css'
 import { Entry } from '../interfaces'
-import mockData from '../assets/entries.json'
-import fetchService from '../services/fetchService'
+import mockData from '../assets/random.json'
+import fetchData from '../services/fetchService'
 
 function RandomEntryPage() 
 {
@@ -13,7 +13,7 @@ function RandomEntryPage()
 
   async function fetchAndSetData() {
     setLoading(true)
-    const result = await fetchService<{entries: Entry[], error: string}>('https://api.publicapis.org/random')
+    const result = await fetchData<{entries: Entry[], error: string}>('https://api.publicapis.org/random')
     // setEntry(result.response?.entries[0] ?? null)
     // setError(result.error)
     setLoading(false)

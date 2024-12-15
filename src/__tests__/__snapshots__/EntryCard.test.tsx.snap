@@ -3,58 +3,46 @@
 exports[`EntryCard Component matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class='max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white'
+    class="flex flex-wrap justify-evenly"
   >
     <div
-      class='font-bold text-xl mb-2'
+      class="cursor-pointer text-silver bg-customBackground hover:bg-silver hover:text-green  rounded-lg p-4 m-2 min-w-52 max-w-52 w-52 transition duration-300 ease-in-out"
     >
-      The Muse
+      <h2
+        class="text-lg font-bold mt-2 elipsis-pretty"
+      >
+        The Muse
+      </h2>
+      <p
+        class="text-gray-400 mb-2 text-[8px]"
+      >
+        Category: Jobs
+      </p>
+      <p
+        class="text-gray-400 pb-4 text-xs"
+      >
+        Job board and company profiles
+      </p>
+      <span
+        class="grid grid-cols-5 gap-1"
+      >
+        <p
+          class="text-gray-400 pb-4 text-[8px] text-green"
+        >
+          HTTPS
+        </p>
+        <p
+          class="text-gray-400 pb-4 text-[8px] col-span-2"
+        >
+          Cors: unknown
+        </p>
+        <p
+          class="text-gray-400 pb-4 text-[8px] col-span-2"
+        >
+          AUTH: apiKey
+        </p>
+      </span>
     </div>
-    <p
-      class='text-gray-700 text-base mb-2'
-    >
-      Job board and company profiles
-    </p>
-    <p
-      class='text-gray-600 text-sm mb-2'
-    >
-      <strong>
-        Auth:
-      </strong>
-       apiKey
-    </p>
-    <p
-      class='text-gray-600 text-sm mb-2'
-    >
-      <strong>
-        HTTPS:
-      </strong>
-       Yes
-    </p>
-    <p
-      class='text-gray-600 text-sm mb-2'
-    >
-      <strong>
-        Cors:
-      </strong>
-       unknown
-    </p>
-    <p
-      class='text-gray-600 text-sm mb-2'
-    >
-      <strong>
-        Category:
-      </strong>
-       Jobs
-    </p>
-    <a
-      class='text-blue-500 hover:text-blue-700'
-      href='https://www.themuse.com/developers/api/v2'
-      rel='noopener noreferrer'
-      target='_blank'
-    >
-      Visit API
-    </a>
   </div>
 </DocumentFragment>
 `;
