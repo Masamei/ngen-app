@@ -1,11 +1,12 @@
 ## How much time did you spend on the assignment?
-cca 12 hours
+cca 13 hours
 
 ## What would you do differently if you had more time?
 - use context for better handling of data. Initial data should be fetched when page is rendering and should be saved in context on app level, so that we can avoid fetching t every time tab opens
 - maybe using react router for navigation instead of just 'dumb logic'
 - when retrying to call rest api i would use a small timeout to give server time to get it together
 - better error handling with errorBoundery, better implementation of showing errors to user and also more detail handling of APIs errors based on status (for example retry 408 Request Timeout or 504 Gateway Timeout, but don't bother with 404)
+- better positioning of the graphs
 
 ## What part of the assignment did you find the most challenging?
 Configuration and writing tests gave me the ost headaches. Also figuring out the visual part of the app. Design is not my strong suit.

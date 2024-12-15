@@ -1,9 +1,10 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import { ChartsProps } from '../interfaces'
+import { ChartsProps, Entry } from '../interfaces'
 
 export default function Charts({ categories, entries }: ChartsProps) 
 {
+
   const barChartOptions = {
     chart: {
       type: 'column',
@@ -35,7 +36,7 @@ export default function Charts({ categories, entries }: ChartsProps)
     },
     tooltip: {
       formatter: function (this: any): string {
-        return `${this.key}: ${this.y}`;
+        return `${this.key}: ${this.y}`
       },
       style: {
         display: 'flex',
@@ -54,69 +55,79 @@ export default function Charts({ categories, entries }: ChartsProps)
     }]
   }
   
-  // function getColors() {
-  //   if (Highcharts.getOptions() && Highcharts.getOptions().colors) {
-  //     return Highcharts.getOptions().colors?.map((_c, i) =>
-  //       // Start out with a darkened base color (negative brighten), and end
-  //       // up with a much brighter color
-  //       Highcharts.color(Highcharts.getOptions().colors![2])
-  //           .brighten((i - 3) / 7)
-  //           .get())
-  //   }
-  // }
+  function getColors() {
+    if (Highcharts.getOptions() && Highcharts.getOptions().colors) {
+      return Highcharts.getOptions().colors?.map((_c, i) =>
+        // Start out with a darkened base color (negative brighten), and end
+        // up with a much brighter color
+        Highcharts.color(Highcharts.getOptions().colors![2])
+            .brighten((i - 3) / 7)
+            .get())
+    }
+  }
 
-  // const pieChartOptions = {
-  //   chart: {
-  //     plotBackgroundColor: null,
-  //     plotBorderWidth: null,
-  //     plotShadow: false,
-  //     type: 'pie'
-  //   },
-  //   title: {
-  //       text: 'Category shares'
-  //   },
-  //   tooltip: {
-  //       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
-  //       style: {
-  //         display: 'flex',
-  //         fontSize: '8px',
-  //         fontFamily: 'Roboto, sans-serif'
-  //       },
-  //   },
-  //   accessibility: {
-  //       point: {
-  //           valueSuffix: '%'
-  //       }
-  //   },
-  //   plotOptions: {
-  //       pie: {
-  //           allowPointSelect: true,
-  //           cursor: 'pointer',
-  //           colors: getColors(),
-  //           borderRadius: 5,
-  //           dataLabels: {
-  //               enabled: true,
-  //               format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-  //               distance: -50,
-  //               filter: {
-  //                   property: 'percentage',
-  //                   operator: '>',
-  //                   value: 4
-  //               }
-  //           }
-  //       }
-  //   },
-  //   series: [
-  //     {
-  //       name: 'Entries',
-  //       colorByPoint: true,
-  //       data: categories.map((category, index) => ({
-  //         name: category,
-  //         y: data[index] / entries.length * 100,
-  //       })),
-  //     },
-  //   ],
-  // }
+  const getNumberOfEntriesForCategory = (category: string, entries: Entry[]): number  => {
+    return entries.filter(entry => entry.Category === category).length
+  }
+
+  const pieChartOptions = {
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie',
+      height: 250
+    },
+    title: {
+        text: 'Category shares'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        style: {
+          display: 'flex',
+          fontSize: '8px',
+          fontFamily: 'Roboto, sans-serif'
+        },
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            colors: getColors(),
+            borderRadius: 5,
+            dataLabels: {
+                enabled: false,
+                format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                distance: -50,
+                style: {
+                  display: 'flex',
+                  fontSize: '5px',
+                  fontFamily: 'Roboto, sans-serif'
+                },
+                filter: {
+                    property: 'percentage',
+                    operator: '>',
+                    value: 4
+                }
+            }
+        }
+    },
+    series: [
+      {
+        name: 'Entries',
+        colorByPoint: true,
+        data: categories.map((category) => ({
+          name: category,
+          y: getNumberOfEntriesForCategory(category, entries) / entries.length * 100,
+        })),
+      },
+    ],
+  }
 
   return (
     <div>
@@ -124,7 +135,7 @@ export default function Charts({ categories, entries }: ChartsProps)
         <HighchartsReact highcharts={Highcharts} options={barChartOptions} />
       </div>
       <div>
-        {/* <HighchartsReact highcharts={Highcharts} options={pieChartOptions} /> */}
+        <HighchartsReact highcharts={Highcharts} options={pieChartOptions} />
       </div>
     </div>
   )
